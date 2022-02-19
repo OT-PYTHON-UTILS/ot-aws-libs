@@ -80,13 +80,13 @@ class getResoruceFinder:
 
     def _get_redis_ids_using_tags(self,tags):
 
-        redis_client = self.client.describe_replication_groups()
+        redis = self.client.describe_replication_groups()
         redis_instance_ids = []
 
-        for redis in redis['ReplicationGroups']:
-            taglist = redis_client.list_tags_for_resource(ResourceName=redis['ARN'])
+        for redis_instance in redis['ReplicationGroups']:
+            taglist = self.client.list_tags_for_resource(ResourceName=redis_instance['ARN'])
             for tag in taglist['TagList']:
                 if tags == tag:
-                    redis_instance_ids.append(redis['ReplicationGroupId'])
-                    logging.info('{} redis is found based on the tags {}'.format(redis['ReplicationGroupId'],tag))
+                    redis_instance_ids.append(redis_instance['ReplicationGroupId'])
+                    logging.info('{} redis is found based on the tags {}'.format(redis_instance['ReplicationGroupId'],tag))
         return redis_instance_ids
