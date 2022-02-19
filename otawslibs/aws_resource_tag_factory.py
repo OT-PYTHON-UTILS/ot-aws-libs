@@ -15,6 +15,9 @@ class getResoruceFinder:
         
         elif self.service == "rds":
             return self._get_rds_ids_using_tags(tags)
+        
+        elif self.service == "redis":
+            return self._get_redis_ids_using_tags(tags)
 
         else:
             logging.warning(f"Invalid service {service} provided")            
@@ -73,3 +76,17 @@ class getResoruceFinder:
         instance_arn = db['DBInstanceArn']
         instance_tags = self.client.list_tags_for_resource(ResourceName=instance_arn)
         return instance_tags['TagList']
+
+
+    def _get_redis_ids_using_tags(self,tags):
+
+        redis = self.client.describe_replication_groups()
+        redis_instance_ids = []
+
+        for redis in redis['ReplicationGroups']:
+            taglist = client.list_tags_for_resource(ResourceName=redis['ARN'])
+            for tag in taglist['TagList']:
+                if tags == tag:
+                    redis_instance_ids.append(redis['ReplicationGroupId'])
+                    logging.info('{} redis is found based on the tags {}'.format(redis['ReplicationGroupId'],tag))
+        return redis_instance_ids
