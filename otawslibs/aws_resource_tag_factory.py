@@ -53,7 +53,7 @@ class getResoruceFinder:
             
             for tag in tags:
                 for db_tag in db_tags:
-                    if db_tag['Key'] == tag and db_tag['Value'] == tags[tag]:
+                    if db_tag['Key'] == tags['Key'] and db_tag['Value'] == tags['Value']:
                         tag_found = True
                         break
                     else:
