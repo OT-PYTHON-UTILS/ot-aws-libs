@@ -1,4 +1,5 @@
 import logging
+from botocore.exceptions import ClientError
 
 class awsEC2Actions:
     def __init__(self, client):
