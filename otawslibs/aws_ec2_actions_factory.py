@@ -31,7 +31,7 @@ class awsEC2Actions:
                 try:
                     logging.info(f'Stopping EC2 instance : {id}')
                             
-                    self.client.start_instances(
+                    self.client.stop_instances(
                                 InstanceIds=[id]
                             )
                     
