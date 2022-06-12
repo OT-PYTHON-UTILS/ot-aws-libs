@@ -1,6 +1,11 @@
 import logging
 from botocore.exceptions import ClientError
 
+try:
+    import configparser
+except:
+    from six.moves import configparser
+
 class awsEC2Actions:
     def __init__(self, client):
         self.client = client
