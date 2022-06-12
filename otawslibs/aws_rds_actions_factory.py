@@ -1,4 +1,9 @@
 import logging
+from botocore.exceptions import ClientError
+try:
+    import configparser
+except:
+    from six.moves import configparser
 
 class awsRDSActions:
     def __init__(self, client):
