@@ -21,14 +21,15 @@ class imageScansActions:
                 get_repositories['repositories'][repository]['repositoryName'])
         return repositories
 
-    def _scan_images(self, images, repository):
+    def _scan_images(self, images, repository, ecrurl):
         self.images = images
         self.repository = repository
+        self.ecrurl = ecrurl
         for image in self.images:
-                command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html 727357989976.dkr.ecr.us-east-1.amazonaws.com/{self.repository}:{image}"
+                command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {ecrurl}/{self.repository}:{image}"
                 os.system(command)
                 # return(
-                #     f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html 727357989976.dkr.ecr.us-east-1.amazonaws.com/{self.repository}:{image}")
+                #     f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {ecrurl}/{self.repository}:{image}")
 
 
     def _list_imageVersion_repos(self, image_versions):
@@ -45,9 +46,10 @@ class imageScansActions:
 
         return images_repo
 
-    def _scan_imageVersion_repos(self, image_repos):
+    def _scan_imageVersion_repos(self, image_repos, ecrurl):
         self.image_repos = image_repos
+        self.ecrurl = ecrurl
         for repo,image in self.image_repos.items():
-            command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{repo}-{image}.html 727357989976.dkr.ecr.us-east-1.amazonaws.com/{repo}:{image}"
+            command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{repo}-{image}.html {ecrurl}/{repo}:{image}"
             os.system(command)
 
