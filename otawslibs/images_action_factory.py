@@ -32,7 +32,7 @@ class imageScansActions:
                 #     f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {self.ecrurl}/{self.repository}:{image}")
 
 
-    def _list_imageVersion_repos(self, image_versions):
+    def _list_imageversion_repos(self, image_versions):
         self.image_versions = image_versions
         images_repo = {}
         repositories = imageScansActions._get_all_repositories(self)
@@ -46,7 +46,7 @@ class imageScansActions:
 
         return images_repo
 
-    def _scan_imageVersion_repos(self, image_repos, ecrurl):
+    def _scan_imageversion_repos(self, image_repos, ecrurl):
         self.image_repos = image_repos
         self.ecrurl = ecrurl
         for repo,image in self.image_repos.items():
