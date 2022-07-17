@@ -26,10 +26,10 @@ class imageScansActions:
         self.repository = repository
         self.ecrurl = ecrurl
         for image in self.images:
-                command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {ecrurl}/{self.repository}:{image}"
+                command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {self.ecrurl}/{self.repository}:{image}"
                 os.system(command)
                 # return(
-                #     f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {ecrurl}/{self.repository}:{image}")
+                #     f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{image}.html {self.ecrurl}/{self.repository}:{image}")
 
 
     def _list_imageVersion_repos(self, image_versions):
@@ -50,6 +50,6 @@ class imageScansActions:
         self.image_repos = image_repos
         self.ecrurl = ecrurl
         for repo,image in self.image_repos.items():
-            command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{repo}-{image}.html {ecrurl}/{repo}:{image}"
+            command = f"trivy image --format template --template '@reportFormats/html.tpl' -o reports/{repo}-{image}.html {self.ecrurl}/{repo}:{image}"
             os.system(command)
 
