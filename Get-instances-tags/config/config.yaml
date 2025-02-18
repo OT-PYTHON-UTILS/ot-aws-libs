@@ -1,0 +1,11 @@
+aws:
+  profile: "default"  # Set AWS profile name or leave empty
+  role_arn: ""  # Provide IAM Role ARN if assuming a role
+
+filters:
+  region: "ap-southeast-1"
+  tags:
+    "eks:cluster-name": "demo"
+    "eks:nodegroup-name": "spot-on-nodes"
+    "Name": "node-0"
+  output_file: "ec2_instances.csv"
