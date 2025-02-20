@@ -1,0 +1,3 @@
+AMI ID,Attached Volumes,Instance ID,Instance State,Instance Type,Retention Until,Stop Until,Tags
+ami-0e5d217f077cee5b3,vol-04cd93fb5ea9ec7f4,i-033cba391a4605d8d,stopped,t2.micro,2025-03-22,2025-02-20,"{'terminate': 'True', 'create': 'AMI', 'Name': 'testing_instances'}"
+ami-0bd01a671e4ef9df3,vol-0c5737299000d9c9d,i-08ce6cb3205eb3c70,stopped,t2.micro,2025-03-22,2025-02-20,"{'Name': 'testing_instances', 'Testing': 'termination'}"
