@@ -74,7 +74,7 @@ def main():
     config = load_config(config_path)
 
     # FIX: Corrected the key and string comparison
-    if config.get('terminate_instances', {}).get('terminate', 'no').lower() != "yes":
+    if config.get('terminateInstances', {}).get('terminate', 'no').lower() != "yes":
         print("Instance termination is disabled in config.yaml")
         return
     
