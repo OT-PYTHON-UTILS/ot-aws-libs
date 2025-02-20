@@ -63,9 +63,6 @@ def apply_tags(ec2_client, instance_ids, tags):
     ec2_client.create_tags(Resources=instance_ids, Tags=tag_list)
     print(f"Applied tags: {tags} to instances: {instance_ids}")
 
-import csv
-import os
-
 def update_csv(file_path, stop_info, ami_info, post_ami_new_tags):
     # Ensure data is in list format
     stop_info = [stop_info] if isinstance(stop_info, dict) else stop_info
