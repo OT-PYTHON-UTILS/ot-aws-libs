@@ -3,7 +3,8 @@
 This document explains the AWS Lambda function and EventBridge scheduler that automate the deletion of EC2 AMIs based on a defined retention period.
 
 Overview
-- This setup ensures that old AMIs are automatically deleted after a specified number of days. It includes:
+- This setup ensures that old AMIs are automatically deleted after a specified number of days. 
+It includes:
 - A Lambda function that scans AMIs, checks their retention period, and deletes expired ones.
 - An EventBridge rule that triggers the Lambda function daily.
 - Environment variables for easy configuration of retention and snapshot deletion.
