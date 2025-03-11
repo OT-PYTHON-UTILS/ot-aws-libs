@@ -8,6 +8,9 @@ Overview
 - An EventBridge rule that triggers the Lambda function daily.
 - Environment variables for easy configuration of retention and snapshot deletion.
 
+![image](https://github.com/user-attachments/assets/6e8327e7-2f96-42ad-b502-4020126358a6)
+
+
 ## 1️⃣ Lambda Function: AMI Cleanup
 
 Functionality:
