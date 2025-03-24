@@ -151,7 +151,9 @@ Controls retention period & snapshot deletion
 ## 6️⃣ Conclusion
 
 ✅ Lambda Function → Deletes AMIs automatically after RETENTION_DAYS.
+
 ✅ EventBridge → Runs Lambda daily to clean up expired AMIs.
+
 ✅ Environment Variables → Configure retention & snapshot deletion easily.
 
 This setup ensures automated AMI lifecycle management, saving storage costs while maintaining backups for a defined period. 🚀
