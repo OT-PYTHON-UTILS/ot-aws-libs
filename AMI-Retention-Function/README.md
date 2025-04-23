@@ -17,7 +17,7 @@ It includes:
 Functionality:
 
 - Fetches AMIs tagged with Backup = true.
-- Reads the Stopped tag to get the AMI's creation date.
+- Reads the Backup Date tag to get the AMI's creation date.
 - Compares the age of the AMI with the retention period (RETENTION_DAYS).
 - If the AMI is older than the retention period:
 - It is deregistered (deleted).
@@ -39,7 +39,7 @@ def lambda_handler(event, context):
     snapshot_deletion = os.getenv("SNAPSHOT_DELETION", "false").lower() == "true"
     backup_tag_key = os.getenv("BACKUP_TAG_KEY", "Backup")
     backup_tag_value = os.getenv("BACKUP_TAG_VALUE", "true")
-    stopped_tag_key = os.getenv("STOPPED_TAG_KEY", "Stopped")  # Tag key for the date
+    backupdate_tag_key = os.getenv("backupdate_TAG_KEY", "Backup Date")  # Tag key for the date
 
     today = datetime.datetime.utcnow().date()
 
@@ -53,16 +53,16 @@ def lambda_handler(event, context):
         ami_id = ami['ImageId']
         tags = {tag['Key']: tag['Value'] for tag in ami.get('Tags', [])}
 
-        # Ensure AMI has a Stopped tag with a valid date
-        stopped_date_str = tags.get(stopped_tag_key)
-        if not stopped_date_str:
-            print(f"Skipping AMI {ami_id}: No '{stopped_tag_key}' tag found.")
+        # Ensure AMI has a Backup Date tag with a valid date
+        backup_date_str = tags.get(backupdate_tag_key)
+        if not backup_date_str:
+            print(f"Skipping AMI {ami_id}: No '{backupdate_tag_key}' tag found.")
             continue
 
         try:
-            creation_date = datetime.datetime.strptime(stopped_date_str, "%Y-%m-%d").date()
+            creation_date = datetime.datetime.strptime(backup_date_str, "%Y-%m-%d").date()
         except ValueError:
-            print(f"Skipping AMI {ami_id}: Invalid date format in '{stopped_tag_key}' tag.")
+            print(f"Skipping AMI {ami_id}: Invalid date format in '{backupdate_tag_key}' tag.")
             continue
 
         age = (today - creation_date).days
@@ -116,7 +116,7 @@ cron(0 0 * * ? *)
 | SNAPSHOT_DELETION | If `true`, deletes associated snapshots when AMI is deleted | false        |
 | BACKUP_TAG_KEY   | Tag key used to identify AMIs                | Backup       |
 | BACKUP_TAG_VALUE | Tag value used to identify AMIs             | true         |
-| STOPPED_TAG_KEY  | Reads the Stopped tag to determine the AMI creation date.     | Stopped      |
+| BACKUPDATE_TAG_KEY  | Reads the Stopped tag to determine the AMI creation date.     |  Backup Date     |
 
 ## 4️⃣ How This Works (Flow)
 
@@ -137,7 +137,7 @@ Controls retention period & snapshot deletion
   --- AMI created with:
   ```shell
          Backup = true
-         Stopped = 2025-03-01
+         Backup Date = 2025-03-01
   ```
 - March 31, 2025 (30 days later, RETENTION_DAYS = 30):
   --- Lambda function deletes AMI.
