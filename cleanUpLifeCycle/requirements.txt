@@ -1,0 +1,5 @@
+boto3
+pyyaml
+sqlite3
+git+https://github.com/OT-PYTHON-UTILS/ot-aws-libs.git@developv2
+git+https://github.com/OT-PYTHON-UTILS/ot-filesystem-libs.git@develop
