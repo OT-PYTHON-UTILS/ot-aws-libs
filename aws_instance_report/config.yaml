@@ -1,0 +1,15 @@
+aws_profile: default
+role_arn: ""
+regions:
+  - us-east-1
+  - eu-west-1
+instance_ids_file: null
+filter_by_tags: true
+match_all_tags: true
+tags:
+  Name: SonarQube
+cpu_utilization:
+  period: 86400
+  start: null
+  end: null
+  last_n_days: 7
