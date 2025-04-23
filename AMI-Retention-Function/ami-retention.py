@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     snapshot_deletion = os.getenv("SNAPSHOT_DELETION", "false").lower() == "true"
     backup_tag_key = os.getenv("BACKUP_TAG_KEY", "Backup")
     backup_tag_value = os.getenv("BACKUP_TAG_VALUE", "true")
-    stopped_tag_key = os.getenv("STOPPED_TAG_KEY", "Stopped")  # Tag key for the date
+    backupdate_tag_key = os.getenv("backupdate_TAG_KEY", "Backup Date")  # Tag key for the date
 
     today = datetime.datetime.utcnow().date()
 
@@ -23,16 +23,16 @@ def lambda_handler(event, context):
         ami_id = ami['ImageId']
         tags = {tag['Key']: tag['Value'] for tag in ami.get('Tags', [])}
 
-        # Ensure AMI has a Stopped tag with a valid date
-        stopped_date_str = tags.get(stopped_tag_key)
-        if not stopped_date_str:
-            print(f"Skipping AMI {ami_id}: No '{stopped_tag_key}' tag found.")
+        # Ensure AMI has a Backup Date tag with a valid date
+        backup_date_str = tags.get(backupdate_tag_key)
+        if not backup_date_str:
+            print(f"Skipping AMI {ami_id}: No '{backupdate_tag_key}' tag found.")
             continue
 
         try:
-            creation_date = datetime.datetime.strptime(stopped_date_str, "%Y-%m-%d").date()
+            creation_date = datetime.datetime.strptime(backup_date_str, "%Y-%m-%d").date()
         except ValueError:
-            print(f"Skipping AMI {ami_id}: Invalid date format in '{stopped_tag_key}' tag.")
+            print(f"Skipping AMI {ami_id}: Invalid date format in '{backupdate_tag_key}' tag.")
             continue
 
         age = (today - creation_date).days
