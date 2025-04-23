@@ -2,6 +2,5 @@ aws_region: "ap-south-1"
 input_csv: "/home/khushimalhotra/Desktop/Office/ami_creation_tags_name/instances.csv"
 output_csv: "ami_output.csv"
 additional_tags:
-  Purpose: "Backup"
-  Deletion: "True"
-  stopped: ""  # This will be dynamically updated with the current date in the script
+  Backup: "true"
+  Backup Date: ""  # This will be dynamically updated with the current date in the script
