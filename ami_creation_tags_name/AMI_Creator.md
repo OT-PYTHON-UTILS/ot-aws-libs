@@ -171,5 +171,3 @@ python3 ami_creator/main.py
 
 ---
 
-If you need this document as a downloadable PDF or HTML, let me know!
-
