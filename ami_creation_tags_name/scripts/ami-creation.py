@@ -49,7 +49,7 @@ def main():
     instances = read_instance_data(config['input_csv'])
     
     current_date = datetime.now().strftime('%Y-%m-%d')
-    config['additional_tags']['stopped'] = current_date
+    config['additional_tags']['Backup Date'] = current_date
     
     with open(config['output_csv'], mode='w', newline='') as file:
         writer = csv.writer(file)
