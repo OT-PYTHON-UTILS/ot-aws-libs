@@ -1,8 +1,8 @@
-from config_reader import read_config
-from csv_utils import read_instance_data, store_ami_details
-from instance_utils import fetch_instance_tags, get_instance_state
-from ami_utils import create_ami, tag_ami
-from session_utils import _create_session
+from ami_creator.config_reader import read_config
+from ami_creator.csv_utils import read_instance_data, store_ami_details
+from ami_creator.instance_utils import fetch_instance_tags, get_instance_state
+from otawslibs.generate_aws_session import _create_session
+from ami_creator.ami_utils import create_ami, tag_ami
 from datetime import datetime
 import csv
 
