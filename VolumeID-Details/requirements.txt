@@ -1,0 +1,4 @@
+boto3
+pandas
+PyYAML
+git+https://github.com/OT-PYTHON-UTILS/ot-aws-libs.git@developv2
