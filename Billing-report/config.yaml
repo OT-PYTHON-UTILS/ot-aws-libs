@@ -1,0 +1,6 @@
+aws_profile: default  # ya jis profile ka use karna hai
+role_arn: ""          # agar assume role karte ho to, warna blank chhod do
+billing_period:
+  start: "2025-04-01"
+  end: "2025-04-26"
+output_excel: "aws_cost_report_april.xlsx"
