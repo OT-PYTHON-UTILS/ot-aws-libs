@@ -46,13 +46,10 @@ The tool reads EC2 instance data from a CSV, checks each instance's state, creat
 ### 2️⃣ `config_reader.py`
 
 #### 🔹 Function: `read_config()`
-
 #### 🔸 Purpose:
 - Loads YAML configuration from file path defined in `CONFIG_PATH` env variable.
-
 #### 📥 Input:
 - None (fetches path from environment)
-
 #### 📤 Output:
 - Parsed configuration dictionary
 
@@ -61,15 +58,12 @@ The tool reads EC2 instance data from a CSV, checks each instance's state, creat
 ### 3️⃣ `session_utils.py`
 
 #### 🔹 Function: `_create_session()`
-
 #### 🔸 Purpose:
 - Returns a `boto3.Session` either using a profile, by assuming a role, or using default credentials.
-
 #### 📥 Input:
 - `aws_profile`: optional string
 - `role_arn`: optional string
 - `role_session_name`: optional session name (default: 'AssumeRoleSession')
-
 #### 📤 Output:
 - boto3 `Session` object
 
@@ -78,23 +72,18 @@ The tool reads EC2 instance data from a CSV, checks each instance's state, creat
 ### 4️⃣ `csv_utils.py`
 
 #### 🔹 Function: `read_instance_data()`
-
 #### 🔸 Purpose:
 - Reads instances from a CSV file with headers `InstanceID`, `InstanceName`.
-
 #### 📥 Input:
 - CSV path
-
 #### 📤 Output:
 - List of dictionaries containing instance ID and name
 
 ---
 
 #### 🔹 Function: `store_ami_details()`
-
 #### 🔸 Purpose:
 - Appends AMI ID, AMI name, and timestamp to an output CSV.
-
 #### 📥 Input:
 - `ami_id`, `ami_name`, `output_csv`
 
@@ -103,26 +92,20 @@ The tool reads EC2 instance data from a CSV, checks each instance's state, creat
 ### 5️⃣ `instance_utils.py`
 
 #### 🔹 Function: `fetch_instance_tags()`
-
 #### 🔸 Purpose:
 - Retrieves existing tags for an instance
-
 #### 📥 Input:
 - EC2 client, instance ID
-
 #### 📤 Output:
 - Dictionary of tags (key-value pairs)
 
 ---
 
 #### 🔹 Function: `get_instance_state()`
-
 #### 🔸 Purpose:
 - Returns the current state (running/stopped) of an instance
-
 #### 📥 Input:
 - EC2 client, instance ID
-
 #### 📤 Output:
 - String state
 
@@ -131,23 +114,18 @@ The tool reads EC2 instance data from a CSV, checks each instance's state, creat
 ### 6️⃣ `ami_utils.py`
 
 #### 🔹 Function: `create_ami()`
-
 #### 🔸 Purpose:
 - Creates an AMI from a given instance ID and AMI name
-
 #### 📥 Input:
 - EC2 client, instance ID, AMI name, `no_reboot` flag
-
 #### 📤 Output:
 - AMI ID string
 
 ---
 
 #### 🔹 Function: `tag_ami()`
-
 #### 🔸 Purpose:
 - Applies tags to the created AMI
-
 #### 📥 Input:
 - EC2 client, AMI ID, dictionary of tags
 
