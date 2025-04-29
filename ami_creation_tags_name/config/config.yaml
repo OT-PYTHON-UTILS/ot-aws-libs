@@ -1,0 +1,8 @@
+role_arn: "arn:aws:iam::123456789012:role/YourAssumeRole"
+aws_profile: null
+aws_region: "ap-south-1"
+input_csv: "/home/khushimalhotra/Desktop/Office/ami_creation_tags_name/instances.csv"
+output_csv: "ami_output.csv"
+additional_tags:
+  Backup: "true"
+  Backup Date: ""  # This will be dynamically updated with the current date in the script
