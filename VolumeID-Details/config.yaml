@@ -1,0 +1,6 @@
+regions:
+  - us-east-1
+  - eu-west-1
+
+aws_profile: default
+role_arn: arn:aws:iam::123456789012:role/MyRole
