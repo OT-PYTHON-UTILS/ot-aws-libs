@@ -13,10 +13,9 @@ logger.addHandler(handler)
 
 #initial setup with the temporary credentials and role in order to setup a new session
 class AssumeRoleSessionManager:
-    def __init__(self, access_key, secret_key, session_token, role_arn, session_name='UserSession'):
+    def __init__(self, access_key, secret_key, role_arn, session_name='UserSession'):
         self.access_key = access_key
         self.secret_key = secret_key
-        self.session_token = session_token
         self.role_arn = role_arn
         self.session_name = session_name
 
@@ -24,7 +23,6 @@ class AssumeRoleSessionManager:
             'sts',
             aws_access_key_id=self.access_key,
             aws_secret_access_key=self.secret_key,
-            aws_session_token=self.session_token
         )
 
         self.credentials = None

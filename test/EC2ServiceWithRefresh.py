@@ -7,7 +7,7 @@ class EC2ServiceWithRefresh:
         self._refresh_client()
     
     def _refresh_client(self):
-        creds = self.session_manager.main()
+        creds = self.session_manager.get_current_credentials()
         self.client = boto3.client(
             'ec2',
             aws_access_key_id=creds['aws_access_key_id'],
@@ -21,7 +21,9 @@ class EC2ServiceWithRefresh:
             return self.client.describe_instances()
         except ClientError as e: 
             if 'ExpiredToken' in str(e):
-                print("Token expired, refreshing...")
+                print("[INFO] Token expired, refreshing...")
                 self._refresh_client()
                 return self.client.describe_instances()
             raise
+
+
